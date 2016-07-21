@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8"/>
+    <title>When I Sit Down At My Editor, I Feel Relaxed</title>
+    <link rel="stylesheet" href="tufte.css"/>
+    <link rel="stylesheet" href="latex.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<article>
+    <h1 id="tufte-css">When I Sit Down At My Editor, I Feel Relaxed</h1>
+    <p class="subtitle">Matt Huebert</p>
+    
+    <section>
+	    
+	    <p><em>DRAFT&mdash;An up-to-date version of this document may be <a href="https://rawgit.com/mhuebert/px16/master/index.html">viewed here</a> or <a href="https://github.com/mhuebert/px16/archive/master.zip">downloaded</a>.</em></p>
+    
+	<p>Last spring, I sat down to work on what I thought should be a simple computing task.<label for="sn-instaparse" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-instaparse" class="margin-toggle"/><span class="sidenote"><a href="http://instaparse-live.matt.is">Instaparse Live</a></span>
+		It took me two weeks, and I couldn't help but think: <em>that should have taken fifteen minutes!</em> What happened? </p>
+		
+		<p>When I looked back, I didn't <em>appear</em> to have wasted time: I was learning good tools, writing in a language I enjoyed, being ostensibly sane.<label for="sn-sane" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-sane" class="margin-toggle"/><span class="sidenote">“We must ask, what kind of culture or subculture is the ‘well-adjusted’ person well adjusted <em>to</em>? Adjustment is very definitely, <em>not</em> necessarily synonymous with psychological health.” Abraham Maslow, <em><a href="https://books.google.de/books?isbn=1631821091"> Toward a Psychology of Being</a></em>, 197.</span> 
+			
+			Yet, the incidentals outweighed the essentials. My environment of work was more often a distraction, rather than help, to the flashes of vision that would enter my mind and wish to exist. The flow between imagination and concrete representation in the world was constantly interrupted.</p>
+		
+		<p>To understand and address this frustration, I set to work on a process of prototyping, observation, peer feedback,<label for="sn-jack" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-jack" class="margin-toggle"/>
+            <span class="sidenote"><a href="http://jackrusher.com/">Jack Rusher</a> has been a constant intellectual companion on this journey: our conversations influenced much of what I present.</span> and research with the goal of improving what I experience when I sit down to program. In this document I share a snapshot of that work-in-progress: aspects of the prototype, key ideas I have explored and encountered, questions I ask myself, and sources I've found valuable.</p>
+		
+    </section>
+
+<section>
+	<h2>A Note on Objectives</h2>
+	
+	<p>A working statement of objective might be:</p>
+    
+    <p><em>To create programming environments which focus as much as possible on the essential problems at hand, and can flexibly adapt to the preferences, cognition styles and contexts of diverse people.</em></p>
+
+	
+	<p>To understand where a good part of my motivation comes from, observe the following table:<label for="sn-representative" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-representative" class="margin-toggle"/>
+            <span class="sidenote">A representative sample of the <em>kinds</em> of problems that concern me, not the exclusive or even primary focus.</span></p>	    <table style="border: 3px solid black" cellpadding="10">
+	        <tr style="text-align:center;font-weight:bold">
+		        <td colspan="2">Typical Programmer Baby Steps</td>
+	        </tr>
+            <tr>
+                <td width="40%">Open a text editor.</td>
+                <td class="em">
+	                Can I use Microsoft Word?<br>
+	                Oh... what is a text editor?<br>
+	                Which editor should I use?</td>
+            </tr>
+            <tr>
+                <td>Create and save a new file.</td>
+                <td class="em">
+	                Where should I put it? <br>
+	                What should I call it? <br>
+	                What does the 'file extension' mean?
+	               
+	                </td>
+            </tr>
+            <tr>
+                <td>Open a new terminal window.</td>
+                <td class="em">
+	                What is the terminal?<br>
+	                Where do I find it?<br>
+	                Why is it blank?<br>
+	                What can I click?<br>
+	                How do I know what to type?
+	                
+                </td>
+            </tr>
+            <tr>
+                <td>Navigate to the folder where you created your file.</td>
+                <td class="em">
+	                What do you mean, "navigate"?<br>
+	                How do I navigate? <br>
+	                How do I know where I am?
+	                </td>
+            </tr>
+            <tr>
+                <td>Now, run your program:</td>
+                <td>... <br><em>(the process continues...)</em></td>
+              
+            </tr>
+        </table>
+        
+        <p>Following these steps is not easy for a beginner.<label for="sn-expert" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-expert" class="margin-toggle"/>
+            <span class="sidenote">Nor for an expert, if placed in an unfamiliar environment.</span>  To answer the questions on the right, one must either spend a great deal of time, or give up <em>understanding</em> the answers and simply <em>tell</em> the so-called learner (who is now well on the way to becoming an order-follower): &lsquo;that&rsquo;s just how it is, we have to keep going.&rsquo;</p>
+        <p>I may now state some biases and beliefs:</p>
+        
+        <ol>
+	        
+        <li><em>Nothing</em> in this table is a real prerequisite to understand or explore important ideas in computer science, or to solve everyday problems with code.</li>
+        <li>Programming environments which place fewer demands on the user are possible and inevitable, and will eventually subsume much (but not all) of programming activity.<label for="sn-marx" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-marx" class="margin-toggle"/>
+            <span class="sidenote">&ldquo;...I had grasped the heart of the Marxian argument. It consists of a historical prophecy, combined with an implicit appeal to the following moral law: <em>Help to bring about the inevitable!</em>&rdquo; Karl Popper, <em><a href="https://books.google.de/books?isbn=1134449720">Unended Quest,</a></em> 34.</span> For many, the value of learning the incidental concerns in the above workflow will be as fleeting as the value of learning how to use DOS in 1993, or how to install device drivers in Windows 95 in its heyday. (This knowledge <em>was</em> invaluable at the time.)</li>
+        <li>The intimidating nature<label for="mn-terminal" class="margin-toggle sidenote-number"></label><input type="checkbox" id="mn-terminal" class="margin-toggle"/>
+            <span class="sidenote">A blank terminal window:
+        <img src="images/bash.png"/>
+        </span> of incidental aspects of programming is discouraging to people who do not like to &lsquo;think&rsquo; in the style of those we have historically accepted as &lsquo;programmers&rsquo;. An activity which is truly universal in the range of its possible forms and purposes is thereby limited to people of particular learning and motivational styles.</li>
+        </ol>
+                
+                 <p>An ideal programming environment will continue to be a place of struggle, but more often, struggling with real problems rather than those of our own making or of our tools. Our aim is not to eliminate complexity or uncertainty, but to offer tools and perspectives that encourage us to address them calmly,<label for="sn-maslow3" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-maslow3" class="margin-toggle"/>
+            <span class="sidenote">&ldquo;The anxiety-free person can be more bold and more courageous and can explore and theorize for the sake of knowledge itself.&rdquo; Abraham Maslow, <em><a href="https://books.google.de/books?isbn=1631821091"> Toward a Psychology of Being</a></em>, 62</span> with insight and clarity. </p>
+            
+          
+</section>
+
+    <section> 
+   
+		<h2>Main Aspects of the Prototype</h2>
+		
+		<p>We wish to help programmers focus on the task at hand, while flexibly adapting to diverse preferences and cognitive styles; to create an environment which is learnable and intuitive, but retains the power and flexibility of general-purpose programming. We seek techniques and interfaces that need not be abandoned as a project grows in scope and size.</p>
+		
+		<p>It is the general-purpose nature of the goal that has led to a ‘whole-system’ approach. The prototype is a browser-based editing environment, consisting of:</p>
+		
+		<ol>
+			<li>A visual <strong>tree</strong> interface to organize a project, instead of files;</li>
+			<li>A notion of <strong>cells</strong> as the primary unit of composition, compilation, evaluation, dependency management, and revision control, running as a <strong>dataflow</strong> graph with <strong>history;</strong></li>
+			<li>An <strong>editor</strong> featuring movement toward flexible <strong>visual representations</strong>, in the form of &lsquo;visual macros&rsquo; and custom formatters.</li>
+		</ol>
+		
+		<p>All of what is shown and most of what is discussed has been implemented in the prototype. Some aspects of the system as described remain speculative.</p>
+		
+    </section>
+	
+
+    <section>
+        <h2>Instead of Files, A Tree</h2>
+
+
+		<p>Most programming systems use files and folders not only to persist data, but also as an interface by which users assemble the various parts of a program into a connected whole. There are rules and constraints, which differ by programming language and system, that govern how files are to be named, where files must be located relative to one another, which files &lsquo;must&rsquo; exist, and so on. But these rules and constraints, while absolute and strict, are invisible and unenforced from within their context of use, which is typically an operating system tool such as the Mac OS Finder or a terminal window.<label for="sn-file-extension-change" class="margin-toggle">&#8853;</label><input type="checkbox" id="sn-file-extension-change" class="margin-toggle"/>
+            <span class="marginnote"><img src="images/file-extension-change.png" alt="">Mac OS displays warnings for file-system changes that may break <em>general</em> behaviour, but no warning will appear if a file-system change breaks <em>programming environment</em> expectations, of which the operating system has no knowledge.</span> If a user treats 'programming' files like &lsquo;normal&rsquo; files, naming and moving them for intuitive sense-making or organizational purposes, programs will break without warning. To cope effectively, a user must build and hold in mind a detailed model of the file structure expectations of the programming system at hand.</p>
+
+			<p>Instead of files, we use a visual <strong>tree</strong> featuring collapsible, zoomable nodes which can be either plain text, for documentation or note-taking purposes, or <em>cells,</em> formula-value pairs which we'll describe in detail later. We can <em>zoom</em> to any part of the tree, and follow a <em>breadcrumb</em> back to the top. Users can name and organize nodes of the tree however they like. </p> 
+			<figure> 
+				<img src="images/Tree.gif" alt="" class="blank">
+			</figure>
+			
+			
+			<p>Interfaces of this type can remain performant and usable even as a tree grows to tens of thousands of nodes.<label for="sn-workflowy" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-workflowy" class="margin-toggle"/>
+            <span class="sidenote"><a href="https://blog.workflowy.com/2012/09/10/how-big-can-a-workflowy-account-get/">How Big Can a Workflowy Account Get?</a> Jesse Patel (2012). </span> </p>
+            
+    </section>
+    
+    <section>
+	    <h2>Cells</h2>
+	    
+	    <p>From the dataflow model of a spreadsheet we borrow the notion of a <em>cell</em> as a formula-value pair. Presently, the formula (or source code) of a cell is written in <a href="http://clojure.org/about/clojurescript">ClojureScript,</a> a Lisp dialect that compiles to JavaScript.<label for="sn-langs" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-langs" class="margin-toggle"/>
+            <span class="sidenote">Locally evaluated cells could be written in any language which compiles to the host language.</span> As a user types, source code is continually compiled and evaluated, and changes propagate to dependent cells. A user can reference another cell by finding it in the autocomplete drop-down menu.</p>
+	    
+	    <figure><img src="images/Cell-Simple.gif" alt="" class="blank"></figure>
+	   
+	    
+	    <p>We compose programs out of cells. Each cell returns a single value, and has no knowledge of the cells which depend on it. Information should not &lsquo;leak&rsquo; out of a cell; intercellular communication happens only via dataflow.</p>
+	
+	    <p>The cell is the unit of dependency management. We determine the dependencies of a cell by analyzing its source code, where other cells are referenced by unique ID. A cell's ID is sufficient to find and fetch it from the internet for local evaluation.<label for="sn-paste" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-paste" class="margin-toggle"/>
+            <span class="sidenote">Given compatible runtimes, one could copy and paste source code of cells between projects, and the runtime would load dependencies directly from the pasted code.</span> It is trivial to display a tree of all the source code a cell depends on. To package a &lsquo;release&rsquo; of a group of related cells, we could make a &lsquo;namespace cell&rsquo; containing a nested map of cell references and suggested names; tests could be run on this map of cells to ensure that they work together appropriately. </p>
+	    
+	    <p>We may depend on cells which are mounted and evaluated in <em>remote</em> environments, whose values are streamed to the local runtime. From the perspective of a cell, it does not matter where other cells &lsquo;live&rsquo; or what language they are written in, so long as the propagated value is of the expected form.</p>
+				
+		<p>Cells catch errors, which flow through to dependent cells so that a programmer can trace an error to its &lsquo;root cell&rsquo; even if that cell is written in a different language or evaluated on a different machine.</p>
+		
+		<p>Cells are persisted to a database, but could just as easily persist to files. The means of persistence is not the interface for interaction.</p>
+		
+		<p>A cell should contain the metadata required to run itself in the host language. Given sufficient compiler and dependency-related metadata, a runtime can fetch a cell's dependencies, compile modifications to its source code, and compute new values when triggered, even if the cell is written in a language the runtime has not yet seen.<label for="sn-not-langs" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-not-langs" class="margin-toggle"/>
+            <span class="sidenote">No practical effort has yet been made to write cells in multiple languages; many <em>editor</em>-related features, described later, <em>are</em> language-dependent.</span></p>
+		
+		<h3>Dataflow, with a Twist of Reduce</h3>
+		
+		<p>To modify a cell's value in response to <strong>time</strong> or an <strong>event,</strong> we apply <em>reducing functions,</em> which receive a cell's current value as an argument and return the next value.</p>
+		
+		<p>To evaluate a cell on an interval, we use the supplied <em>interval</em> helper function, which we pass an interval time and a reducing function:</p>
+		
+		<figure><img src="images/Reduce-inc.gif" alt=""></figure>
+		
+		<p>In fact, all cells can be thought of as reducing functions, because we can use the keyword <em>self</em> to refer to a cell's previous value. Here we generate random numbers one-at-a-time in the first cell, and <em>cons</em><label for="sn-cons" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-cons" class="margin-toggle"/>
+            <span class="sidenote">Adds an item to the beginning of a list.</span> them onto <em>self</em> in the next cell to build a history of values:</p>
+		<figure><img src="images/Reduce-history.gif" alt=""></figure>
+		
+		<p>We can use the <span class="code">html</span><label for="sn-hiccup" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-hiccup" class="margin-toggle"/>
+            <span class="sidenote">Expects <a href="https://github.com/weavejester/hiccup/wiki/Syntax">Hiccup</a> syntax and returns a <a href="https://facebook.github.io/react/">React</a> component which is mounted in the tree.</span> function to visualize the values:</p>
+		
+		<figure><img src="images/Reduce-chart.gif" alt=""></figure>
+	  
+		<p>The <em>with-view</em> macro accepts an html view and a value expression. The view will be used to display the cell's value in the editing environment. Listeners passed through the <em>html</em> function are wrapped to behave as reducing functions. They are passed the cell's value (<em>self</em>) as their first argument, and the event object as the second. The return value is propagated as the cell's new <em>self.</em> Here is a counter:</p>
+		 
+		<figure><img src="images/Withview-inc-2.gif" alt=""></figure>
+	    
+    </section>
+    
+    <section>
+    	<h2>Editor</h2>
+    	
+    	<p>The editor<label for="sn-editor" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-editor" class="margin-toggle"/>
+            <span class="sidenote">Built using <a href="https://codemirror.net/">CodeMirror,</a> by Marijn Haverbeke</span>
+ is a bridge between the cell graph and the tree, using information from both to meaningfully represent code. Efforts are underway to introduce flexible, ad-hoc visual representation of code. The examples below are primitive but indicate possibilities.</p>
+ 
+ <h3>Visual Macros</h3>
+ 
+
+ <p>Visual macros augment ordinary Lisp code with visual representations. The idea grew out of practice, and stems from the same properties<label for="sn-XX" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-XX" class="margin-toggle"/>
+            <span class="sidenote">&ldquo;&hellip;Syntactic macro systems work instead at the level of abstract syntax trees, and preserve the lexical structure of the original program&hellip; [Lisp-like] languages are especially suited for this style of macro due to their uniform, parenthesized syntax.&rdquo; &mdash;<a href="https://en.wikipedia.org/wiki/Macro_(computer_science)#Syntactic_macros">Wikipedia</a></span> 
+            of homoiconic languages (like Lisp) that make syntactic macros convenient: S-Expressions have clear boundaries, and they can be manipulated without affecting the structure of surrounding code. We can make arbitrary, ad-hoc changes to how we display parcels of code without losing the power of the language below.<label for="sn-toes" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-toes" class="margin-toggle"/>
+            <span class="sidenote">&ldquo;LISP is a high-level language, but you can still feel the bits sliding between your toes.&rdquo; Guy Steele as quoted by Daniel Hillis, <em><a href="https://books.google.com/books?isbn=046502596X">Pattern on the Stone</a></em></span></p>
+    	
+    	<p>For example, cells are referenced by unique ID, but they are visually represented by an HTML element which displays the cell's name (from the tree) and value:</p>
+    	<figure>
+    	<label for="mn-quote" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-quote" class="margin-toggle"/>
+            <span class="marginnote">By quoting the visual macro in cell <em>b</em>, we see the underlying code.</span>
+    	<img src="images/Cell-quote-change-name.gif" alt="" class="blank"></figure>  
+    	<p>A key idea behind visual macros is that one could always see the code behind the view, or disable them if desired. Rather than design a comprehensive &lsquo;visual programming language&rsquo;, we look for specific places and contexts where visual enhancement can add value, and improve experience in an ad-hoc manner.</p>
+    	
+    	<p>Visual macros may be discovered which have general utility. It is my view that useful and practical visual enhancements are more likely to come &lsquo;from the bottom&rsquo; than from a language or editor designer. This requires an <em>iterable medium</em> for visual representation of code which makes experimentation easy and accessible to a wide range of talents.</p>
+    	
+		<p>Visual macros are also a way to think about things we've seen before. Number scrubbers<label for="sn-scrub" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-scrub" class="margin-toggle"/>
+            <span class="sidenote">&ldquo;Solve problems by interactively scrubbing over numbers until you&rsquo;re happy with the results.&rdquo; Bret Victor, <a href="http://worrydream.com/ScrubbingCalculator/">Scrubbing Calculator</a></span> are simply Lisp forms that pass a predicate (<em>number?</em>), replaced by HTML elements which rewrite the code they represent when dragged.</p>
+
+    	<figure><img src="images/Visual-scrub.gif" alt=""></figure>
+    	
+    	<p>Whether we represent numbers as text or something else is a matter of taste, purpose and context.<label for="sn-diverse" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-diverse" class="margin-toggle"/>
+            <span class="sidenote">&ldquo;Each notation highlights some types of information at the expense of obscuring other types; each notation facilitates some operations at the expense of making others harder. A notation is never absolutely good, therefore, but good only in relation to certain tasks.&rdquo; Thomas Green (1989). <a href="https://www.cl.cam.ac.uk/~afb21/CognitiveDimensions/papers/Green1989.pdf">Cognitive Dimensions of Notations</a></span> The machinery is identical; we can represent a value however we like:</p>
+    	    	
+    	<figure><img src="images/Visual-blocks.gif" alt=""></figure>
+    	
+    	<p>Some say that 'visual programming' has been oversold.<label for="sn-oversold" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-oversold" class="margin-toggle"/>
+            <span class="sidenote">&ldquo;Graphical, or visual, programming - the 
+    	application of computer graphics to software design&hellip;.
+    	    Nothing even convincing, much less exciting, has yet 
+    	emerged from such efforts.  I am persuaded that nothing will.&rdquo; Fred Brooks (1987). <a href="http://worrydream.com/refs/Brooks-NoSilverBullet.pdf">No Silver Bullet</a> <br><br></span> I think we've not yet scratched the surface. Alan Blackwell wrote that programming &ldquo;involves loss of direct manipulation as a result of abstraction over time, entities or situations.&rdquo;<label for="sn-loss" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-loss" class="margin-toggle"/>
+            <span class="sidenote">Alan Blackwell, <a href="https://www.cl.cam.ac.uk/~afb21/publications/HCC02a.pdf">First Steps in Programming: A Rationale for Attention
+Investment Models</a>, 5</span> Unfortunately, in most cases this loss has been <em>total.</em> Many editors have literally no facility for adding meaning to the abstract representations of what are, fundamentally, meaning-laden entities. As a thought experiment, imagine what users would think of spreadsheets if it was impossible to format dates, numbers, and currencies.<label for="sn-date" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-date" class="margin-toggle"/>
+            <span class="sidenote">What time of day is 1468417963?</span></p>
+
+    	
+    	<h3>&lsquo;Physical&rsquo; S-Expressions</h3>
+    	
+    	<p>We might think of code less as <em>language</em>, which brings to mind sentences and grammar, and more as a <em>construction</em> of <em>parts</em>, which have properties and behaviour.<label for="sn-not-lang" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-not-lang" class="margin-toggle"/>
+            <span class="sidenote">&ldquo;The author/programmer must be able to recreate the appropriate mental chunks from a scrutiny of the code. &hellip;we are not parsing for syntactic structure but for <em>mental</em> structure—the reader is attempting to discover the role of each component.&rdquo; Thomas Green (1989). <a href="https://www.cl.cam.ac.uk/~afb21/CognitiveDimensions/papers/Green1989.pdf">Cognitive Dimensions of Notations</a></span></p>
+    	
+			<figure> 
+				<img src="images/Cell-draggable.gif" alt="">
+			</figure>
+			
+			<p>The editor allows parentheses to be dragged with the mouse, with movement restricted to valid positions. In this way the user can have a direct experience of the <em>structure</em> of Lisp code.</p>
+			
+			<p>This allows us to offer benefits of structural editing, such as auto-balancing of parentheses, to beginners, without the requirement that they memorize key commands.</p>
+    	 
+    	    	
+    	<h3>Direct Manipulation</h3>
+    	
+    	<p>We may find it useful to treat some cells more like &lsquo;documents&rsquo; than &lsquo;source code&rsquo;, i.e., the primary interface is through direct manipulation of the view. Below, the <em>circle</em> function returns an HTML view which rewrites the arguments supplied to its invocation in the cell's source code:</p>
+    	
+    	<figure>
+    	<label for="mn-inst" class="margin-toggle">&#8853;</label><input type="checkbox" id="mn-inst" class="margin-toggle"/>
+            <span class="marginnote">Instrumentation allows a function to trace its invocation in the cell stack, and apply a function to its arguments (supplied as an ordinary Clojure data structure.)</span>
+    	<img src="images/Direct-circles.gif" alt=""></figure>
+    	
+    	<p>Juxtaposing an abstract representation with a visual representation can help the user build a mental model of how they relate.</p>
+    	
+    	
+    	
+    	<h3>Docstrings</h3>
+	   		
+		<p>Documentation appears at the bottom of the screen based on cursor position in the editor. If the first form of a cell is a string, it is considered to be the &lsquo;docstring&rsquo; for that cell.</p>
+		   
+			<figure> 
+				<img src="images/Cell-docstring.gif" alt="">
+			</figure>
+			
+			<h3>Popouts</h3>
+		
+		<p>A user may &lsquo;pop out&rsquo;<label for="sn-popout" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-popout" class="margin-toggle"/>
+            <span class="sidenote"><a href="http://www.cnet.com/news/gmail-rolls-out-new-pop-out-window-for-composing-emails/">Gmail rolls out new pop-out window for composing emails</a>. The adoption of new ideas in popular software is both an indication and a cause of <em>shifts</em> in user behaviour and expectations, which we can leverage to improve our tools.</span> a cell's source code or value to the bottom-right corner of the screen, to remain visible while working on another part of the program.</p>
+		
+		<figure> 
+			<img src="images/Cell-popout.gif" alt="">
+		</figure>
+        
+    </section>
+    
+
+
+    <section>
+    	<h2>Conclusion</h2>
+    	
+    	<p>We have covered a number of practical efforts to reduce the incidental complexity of a programming environment, and to make the editing experience more direct, adaptive to context, and intuitive. The efforts are incomplete, but feel promising: I hope they might provoke interesting critique, debate, and further work. I would now like to conclude with a short note about <em>why</em> work in this field might matter.</p>
+    	
+		<p>The software that is &lsquo;eating&rsquo;<label for="sn-eating" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-eating" class="margin-toggle"/>
+            <span class="sidenote">Marc Andreessen, <a href="http://www.wsj.com/articles/SB10001424053111903480904576512250915629460">Why Software is Eating the World</a> </span> our world is understood by a very small number of people. This is not part of a nefarious plan: making software today is really hard.</p>
+    	
+		<table cellspacing="2" style="text-align:center">
+			<tr>
+				<td>Consumer Software</td>
+			</tr>
+			<tr>
+				<td style="
+					background:rgba(0,0,0,0.1);
+					border-radius:30px; padding:10px;">
+						The gap between software that must be taken &lsquo;as it is,&rsquo;  versus software that &lsquo;can become anything.&rsquo; </td>
+			</tr>
+			<tr>
+				<td>High-Level Language</td>
+			</tr>
+			<tr>
+				<td>Assembly Language</td>
+			</tr>
+			<tr><td>Machine Language</td></tr>
+			<tr>
+				<td>Hardware</td>
+			</tr>
+		</table>
+			<p>As software affects life more intensely, the payoff for having a <em>say</em> in the matter goes up. The opportunities for solving <em>practical</em> problems with code multiply. The social milieu surrounding &lsquo;code&rsquo; and &lsquo;programming&rsquo; thickens.  We have a large and growing number of reasons why it may be valuable and important for the average person to understand what it means to code.</p>
+			
+			<p>But &lsquo;understanding code&rsquo; need not imply learning some reified<label for="sn-reif" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-reif" class="margin-toggle"/>
+            <span class="sidenote">“The apprehension of human phenomena as if they were things, that is, in non-human or possibly superhuman terms. …as if they were something else than human products—such as facts of nature, results of cosmic laws, or manifestations of divine will.” Peter L. Berger &amp; Thomas Luckmann, <a href="https://books.google.com/books?isbn=1453215468"><em>The Social Construction of Reality</em></a>, 36<br><br></span> body of knowledge, set in stone by the tools and practices of yesterday. The message of the medium of code is <em>flexibility</em>. Given time and motivation, we can make a system perform as we like. It can be artistic, logical, poetic, sequential, linguistic, mechanical, musical, humourous&mdash;or whatever your mind comes up with tomorrow.  <em>That</em> is the message I hope my work can point toward, in whatever small way it can.<label for="sn-tangible" class="margin-toggle sidenote-number"></label>
+            <input type="checkbox" id="sn-tangible" class="margin-toggle"/>
+            <span class="sidenote">“celebrate the tangible and partial.” Geoffrey Moore, <a href="https://books.google.com/books?isbn=0060517123"><em>Crossing the Chasm,</em></a> 37</span></p>
+
+				
+
+			
+                   
+            
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+        <div class="epigraph">
+            <blockquote>
+                <p style="width:85%">Everything depends upon the give-and-take between ourselves and our task, our work, our problems...upon feedback, which can be amplified by our criticism of what we have done. It is through the attempt to see objectively the work we have done&mdash;that is to see it critically&mdash;and to do it better, through the interaction between our actions and their objective results, that we can transcend our talents, and ourselves... Our products become largely independent of their makers. We may gain more knowledge from our children or from our theories than we ever imparted to them.</p>
+                <footer>Karl Popper,
+                    <a href="https://en.wikipedia.org/wiki/Unended_Quest"><em>Unended Quest,</em></a> 229</footer>
+            </blockquote>
+        </div>
+        
+       
+
+    </section>
+    
+    
+    <section>
+    	<h2>Thanks</h2>
+    	<div style="margin: 10px 20px 0 0;">
+<a href="http://jackrusher.com/">Jack Rusher</a> for steady encouragement, strong opinions and good ideas.
+<a href="https://www.recurse.com">The Recurse Center</a> for reviving my interest in programming and introducing me to Clojure.
+<a href="http://www.ycombinator.com/">Y Combinator</a> for funding a <a href="http://www.matt.is/writing/introducing-braintripping">harebrained project</a> four years ago.
+<a href="https://en.wikipedia.org/wiki/Daniel_Henry_Holmes_Ingalls,_Jr.">Dan Ingalls</a>, <a href="http://hpi.uni-potsdam.de/hirschfeld/people/roeder/index.html">Marko Roder</a>, and <a href="http://robert.kra.hn/">Robert Krahn</a> of <a href="https://blog.ycombinator.com/harc">HARC</a> & <a href="http://hpi.de/">HPI</a> for the warm welcome and valuable feedback.
+<a href="https://www.linkedin.com/in/silvialatzer">Silvia Latzer</a> for design critique.
+<a href="http://www.meetup.com/Clojure-Berlin/">The Clojure Conspiracy Berlin</a> for opportunities to discuss and present my work.
+<a href="https://clojurebridge-berlin.github.io/">ClojureBridge Berlin</a> for the chance to teach programming to beginners.
+<a href="https://twitter.com/jana_hue">Jana Huebert</a> for appreciating the creative side of code, and teaching me that one doesn’t need a history of obsession with computers to become a great programmer.
+<a href="http://www.oskarth.com/">Oskar Thorén</a> for pair programming.
+<a href="https://www.linkedin.com/in/lisa-wiese-5a710348/en">Lisa Wiese</a> for patience and feedback in the writing of this document.
+    	</div>
+    	
+    	
+    </section>
+
+    
+<section>
+	
+	Made with <a href="https://github.com/edwardtufte/tufte-css">Tufte CSS</a>
+	
+	<br><br>
+	
+	© 2016 Matthew Huebert. Email: <a href="mailto:me@matt.is">me@matt.is</a>, Twitter: <a href="https://www.twitter.com/mhuebert">@mhuebert</a>.
+
+</section>
+
+</article>
+</body>
+</html>

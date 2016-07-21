@@ -1,0 +1,8 @@
+*.codekit
+scratch.html
+original.html
+*.iml
+.idea
+.DS_Store
+LICENSE
+img
